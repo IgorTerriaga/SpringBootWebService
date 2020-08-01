@@ -2,6 +2,8 @@ package com.example.demo.Entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -14,6 +16,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
+    @Transient
+    private Set<Product> products = new HashSet<>();
     public Category() {
     }
 
@@ -36,5 +40,9 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 }

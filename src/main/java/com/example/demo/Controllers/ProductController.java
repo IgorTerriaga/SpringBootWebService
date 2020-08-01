@@ -1,7 +1,8 @@
 package com.example.demo.Controllers;
 
-import com.example.demo.Entities.Category;
-import com.example.demo.Services.CategoryService;
+import com.example.demo.Entities.Product;
+import com.example.demo.Entities.User;
+import com.example.demo.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,22 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/categories")
-public class CategoryController {
-
+@RequestMapping(value = "/products")
+public class ProductController {
     @Autowired
-    private CategoryService categoryService;
+    private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = categoryService.findAll();
+    public ResponseEntity<List<Product>> findAll() {
+        List<Product> list = productService.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> findBydId(@PathVariable Long id) {
-        Category obj = categoryService.findById(id);
+    public ResponseEntity<Product> findById(@PathVariable Long id) {
+        Product obj = productService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-
 }
